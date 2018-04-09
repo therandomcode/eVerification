@@ -24,7 +24,7 @@ console.log(test_results);
 - Get and PARSE LIST of many data entries
 - BINARY SORT data entries dynamically from outputted file (set this on a timer or smtn)
 - Make a way to display entries from an ARRAY into a TABLE
-- Make a way to redisplay entries 
+- Make a way to redisplay entries
 - Ensure that search actually triggers a change in state
 
 ----------------- END TO DO LIST ------------------------- */
