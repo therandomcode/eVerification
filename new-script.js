@@ -14,7 +14,7 @@ console.log(test_first_name, test_first_name_list);
 var test_results = makeListOfResults(test_first_name, null, null, test_first_name_list, null, null);
 
 console.log("...printing results");
-console.lgzog(test_results);
+console.log(test_results);
 
 
 /* ----------------- END TEST CODE ------------------------------------------------------------------------------------ */
