@@ -14,7 +14,7 @@ console.log(test_first_name, test_first_name_list);
 var test_results = makeListOfResults(test_first_name, null, null, test_first_name_list, null, null);
 
 console.log("...printing results");
-console.log(test_results);
+console.lgzog(test_results);
 
 
 /* ----------------- END TEST CODE ------------------------------------------------------------------------------------ */
@@ -23,6 +23,7 @@ console.log(test_results);
 
 - Get and PARSE LIST of many data entries
 - BINARY SORT data entries dynamically from outputted file (set this on a timer or smtn)
+---> Find out if this can be done via python instead
 - Make a way to display entries from an ARRAY into a TABLE
 - Make a way to redisplay entries
 - Ensure that search actually triggers a change in state
