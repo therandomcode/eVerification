@@ -1,5 +1,8 @@
 # Importing
 import pandas
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 # Testing
 
@@ -36,17 +39,17 @@ eVerify = info["E-verify Initiate Date"].tolist();
             
 for x in xrange(0, len(names)):
     if ',' in names[x]:
-        lastNames.append(names[x].split(',')[0].strip().encode('utf-8'));
-        firstNames.append(names[x].split(',')[1].strip().encode('utf-8'));
+        lastNames.append(names[x].split(',')[0].strip());
+        firstNames.append(names[x].split(',')[1].strip());
     else:
         #In some rarer cases, no firstname is listed. Ignore that. 
-        lastNames.append(names[x].strip().encode('utf-8'))
+        lastNames.append(names[x].strip())
         firstNames.append(" ")
 ## This is arguably a good place to cleanDates() so that the seconds don't show
 
 for person in xrange (0, len(firstNames)):
-    people.append([andrewids[person].encode('utf-8'),lastNames[person].encode('utf-8'),firstNames[person].encode('utf-8'), eVerify[person], dates[person]])
-    f.write( andrewids[person].encode('utf-8') + ', '
+    people.append([andrewids[person],lastNames[person],firstNames[person], eVerify[person], dates[person]])
+    f.write( andrewids[person] + ', '
              ##+ lastNames[person].encode('utf-8') + ', '
              ##+  firstNames[person].encode('utf-8')
              )
@@ -61,7 +64,6 @@ print(type(dates[1]))
 for myint in xrange(0, 100):
     print people[myint]
 
-##sortedFirstNames =
 ##sortedFirstNames = firstNames.sort();
 ##sortedLastNames = lastNames.sort();
 ##sortedAndrewIDs = andrewids.sort();
