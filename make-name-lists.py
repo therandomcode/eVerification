@@ -1,29 +1,12 @@
 # Importing
 import pandas
 import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
-
-# Testing
-
-# Ensure the names were alive
-# THIS IS A VISUAL TEST - IT CANNOT FAIL - please look at manual output
-def testAlign(firstNames, lastNames, andrewids, dates, eVerify):
-    print("Testing name alignment...")
-    print(firstNames[13200])
-    print(lastNames[13200])
-    print(andrewids[13200])
-    print(dates[13200])
-    print(eVerify[13200])
-    print("Done testing")
-
-# Get input
-
-# Sort into arrays: each person has a unique identifier,
-# and there are 3 arrays
+#reload(sys)
+#sys.setdefaultencoding('utf8')
 
 #Set up file to export to - it's a .js we'll export in our script
 f = open('getLists.js', 'w')
+f.close()
 
 waltFile = "walt-data.xlsx"
 
@@ -32,27 +15,43 @@ names = info["Legal Name"].tolist();
 firstNames = [];
 lastNames = [];
 people = [];
-
 andrewids = info["Andrew ID"].tolist();
 dates = info["Continuous Service Date"].tolist();
 eVerify = info["E-verify Initiate Date"].tolist();
-            
-for x in xrange(0, len(names)):
-    if ',' in names[x]:
-        lastNames.append(names[x].split(',')[0].strip());
-        firstNames.append(names[x].split(',')[1].strip());
-    else:
-        #In some rarer cases, no firstname is listed. Ignore that. 
-        lastNames.append(names[x].strip())
-        firstNames.append(" ")
-## This is arguably a good place to cleanDates() so that the seconds don't show
 
-for person in xrange (0, len(firstNames)):
-    people.append([andrewids[person],lastNames[person],firstNames[person], eVerify[person], dates[person]])
-    f.write( andrewids[person] + ', '
-             ##+ lastNames[person].encode('utf-8') + ', '
-             ##+  firstNames[person].encode('utf-8')
-             )
+def testAlign(firstNames, lastNames, andrewids, dates, eVerify):
+    print("Testing name alignment...")
+    print(firstNames[13200])
+    print(lastNames[13200])
+    print(andrewids[13200])
+    print(dates[13200])
+    print(eVerify[13200])
+    print("Done testing")
+    return
+
+def cleanNameData(names, firstnames, lastnames):          
+    for x in xrange(0, len(names)):
+        if ',' in names[x]:
+            lastNames.append(names[x].split(',')[0].strip());
+            firstNames.append(names[x].split(',')[1].strip());
+        else:
+            #In some rarer cases, no firstname is listed. Ignore that. 
+            lastNames.append(names[x].strip())
+            firstNames.append(" ")
+    ## This is arguably a good place to cleanDates() so that the seconds don't show
+    return
+
+def makeJavascriptLists(firstNames, lastNames, andrewids):
+    for person in xrange (0, len(firstNames)):
+        people.append([andrewids[person],lastNames[person],firstNames[person], eVerify[person], dates[person]])
+        f = open('getLists.js', 'a')
+        f.write( '[' + andrewids[person] + ', '
+                 + lastNames[person] + ', '
+                 +  firstNames[person] + '], '
+                 )
+        f.close()
+    return
+        
 
 
 print(firstNames[0:100])
@@ -69,12 +68,12 @@ for myint in xrange(0, 100):
 ##sortedAndrewIDs = andrewids.sort();
 
 ## Then write each of these arrays to a .js file that our script.js file
-## can acccess
+## can access
 
 ##f.write("var firstNames = " + firstNames);
 ##f.write("var lastNames = " + lastNames);
 ##f.write("var andrewids = " + andrewids);
 
-testAlign(firstNames, lastNames, andrewids, dates, eVerify)
-
-f.close()
+testAlign(firstNames, lastNames, andrewids, dates, everify)
+cleanNameData(names, firstnames, lastnames)
+makeJavascriptLists(firstNames, lastNames, andrewids)

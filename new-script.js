@@ -103,7 +103,7 @@ function makeListOfResults(firstName, lastName, andrewID, sortedFirstNames, sort
 	else {
 		matches = -1;
 	}
-	return matches;
+	return matches;o
 }
 
 function myFunction(){
